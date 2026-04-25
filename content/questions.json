@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "text": "Which command is used to list files in a directory?",
+    "options": ["ls", "cd", "pwd", "mkdir"],
+    "answer": 0,
+    "difficulty": "easy"
+  },
+  {
+    "id": 2,
+    "text": "What does 'pwd' stand for?",
+    "options": ["Print Welcome Desk", "Print Working Directory", "Path Weekly Data", "Private Word Dictionary"],
+    "answer": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": 3,
+    "text": "How do you change directory to the parent directory?",
+    "options": ["cd /", "cd ..", "cd ~", "cd -"],
+    "answer": 1,
+    "difficulty": "easy"
+  },
+  {
+    "id": 4,
+    "text": "Which command is used to delete a file?",
+    "options": ["del", "remove", "rm", "erase"],
+    "answer": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": 5,
+    "text": "Which permission represented by the number 7?",
+    "options": ["Read", "Write", "Execute", "Read, Write, and Execute"],
+    "answer": 3,
+    "difficulty": "medium"
+  },
+  {
+    "id": 6,
+    "text": "How do you search for text within files?",
+    "options": ["find", "look", "grep", "search"],
+    "answer": 2,
+    "difficulty": "medium"
+  },
+  {
+    "id": 7,
+    "text": "Which command changes file ownership?",
+    "options": ["chmod", "chown", "chgrp", "own"],
+    "answer": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": 8,
+    "text": "What is the PID of the first process (init/systemd) in Linux?",
+    "options": ["0", "1", "100", "None"],
+    "answer": 1,
+    "difficulty": "hard"
+  },
+  {
+    "id": 9,
+    "text": "Which directory contains system configuration files?",
+    "options": ["/bin", "/usr", "/etc", "/var"],
+    "answer": 2,
+    "difficulty": "hard"
+  },
+  {
+    "id": 10,
+    "text": "Which command displays the amount of free and used memory?",
+    "options": ["top", "free", "df", "mem"],
+    "answer": 1,
+    "difficulty": "hard"
+  }
+]

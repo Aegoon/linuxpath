@@ -1,0 +1,12 @@
+services:
+  terminal-service:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.sandbox
+    image: linuxpath-sandbox:latest
+    network_mode: none
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M

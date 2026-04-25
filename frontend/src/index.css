@@ -1,0 +1,50 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@1,300;1,400&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  --animate-blink: blink 1s step-end infinite;
+}
+
+:root {
+  --bg: #EAE9E6;
+  --ink: #1A1A1A;
+  --line: rgba(26, 26, 26, 0.1);
+  --accent: #FF5F1F; /* Terminal orange */
+}
+
+@layer base {
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+  }
+
+  .font-technical {
+    font-family: var(--font-mono);
+    letter-spacing: -0.02em;
+  }
+
+  .font-editorial {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+  }
+}
+
+/* Custom scannable grid pattern */
+.technical-grid {
+  background-image: 
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.terminal-container .xterm-viewport {
+  background-color: #000 !important;
+}

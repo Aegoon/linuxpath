@@ -1,0 +1,30 @@
+FROM ubuntu:22.04
+
+# Prevent interactive prompts
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install core utilities
+RUN apt-get update && apt-get install -y \
+    vim \
+    curl \
+    git \
+    python3 \
+    gcc \
+    g++ \
+    make \
+    iputils-ping \
+    net-tools \
+    htop \
+    man \
+    sudo \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create a non-root user
+RUN useradd -m -s /bin/bash student
+USER student
+WORKDIR /home/student
+
+# Set shell prompt and colors
+RUN echo 'PS1="\033[01;32mstudent@linuxpath\033[00m:\033[01;34m\w\033[00m\$ "' >> /home/student/.bashrc
+
+CMD ["/bin/bash"]

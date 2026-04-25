@@ -1,0 +1,22 @@
+[
+  {
+    "id": "create-report-1",
+    "instruction": "Create a file called 'report.txt' in the /home/student directory.",
+    "checkScript": "[ -f /home/student/report.txt ] && echo 'PASS' || echo 'FAIL'",
+    "hints": [
+      "You can use the 'touch' command to create empty files.",
+      "Try running: touch /home/student/report.txt"
+    ],
+    "answer": "touch report.txt"
+  },
+  {
+    "id": "create-dir-1",
+    "instruction": "Create a directory named 'backup' in your home folder.",
+    "checkScript": "[ -d /home/student/backup ] && echo 'PASS' || echo 'FAIL'",
+    "hints": [
+      "The 'mkdir' command is used to make directories.",
+      "Try running: mkdir backup"
+    ],
+    "answer": "mkdir backup"
+  }
+]

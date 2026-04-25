@@ -1,0 +1,8 @@
+{
+  "name": "LinuxPath",
+  "description": "An interactive Linux learning platform with built-in sandbox terminals, structured courses, and certification paths.",
+  "requestFramePermissions": [
+    "clipboard-read",
+    "clipboard-write"
+  ]
+}

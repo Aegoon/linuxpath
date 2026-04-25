@@ -1,0 +1,164 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id             String         @id @default(cuid())
+  email          String         @unique
+  name           String?
+  avatarInitials String?
+  role           String         @default("student") // "student", "admin"
+  isBanned       Boolean        @default(false) @map("is_banned")
+  createdAt      DateTime       @default(now()) @map("created_at")
+  
+  levels         UserLevel[]
+  progress       UserProgress[]
+  activity       UserActivity[]
+  quizAttempts   QuizAttempt[]
+  subscription   Subscription?
+  certificates   Certificate[]
+
+  @@map("users")
+}
+
+model PlatformSettings {
+  id                        Int     @id @default(1)
+  platformName              String  @default("LinuxPath") @map("platform_name")
+  supportEmail              String  @default("support@linuxpath.com") @map("support_email")
+  maxContainerLifetimeMins  Int     @default(30) @map("max_container_lifetime_mins")
+  maxContainersPerUser      Int     @default(1) @map("max_containers_per_user")
+  maintenanceMode           Boolean @default(false) @map("maintenance_mode")
+  allowNewSignups           Boolean @default(true) @map("allow_new_signups")
+
+  @@map("platform_settings")
+}
+
+model UserLevel {
+  id         String   @id @default(cuid())
+  userId     String   @map("user_id")
+  levelId    String   @map("level_id")
+  assignedAt DateTime @default(now()) @map("assigned_at")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  level Level @relation(fields: [levelId], references: [id])
+
+  @@index([userId])
+  @@map("user_levels")
+}
+
+model UserProgress {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  lessonId    String   @map("lesson_id")
+  completedAt DateTime @default(now()) @map("completed_at")
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id])
+
+  @@index([userId])
+  @@map("user_progress")
+}
+
+model UserActivity {
+  id     String   @id @default(cuid())
+  userId String   @map("user_id")
+  date   DateTime @default(now()) @map("date")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@index([userId])
+  @@map("user_activity")
+}
+
+model QuizAttempt {
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  lessonId    String   @map("lesson_id")
+  score       Int
+  attemptedAt DateTime @default(now()) @map("attempted_at")
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lesson Lesson @relation(fields: [lessonId], references: [id])
+
+  @@index([userId])
+  @@map("quiz_attempts")
+}
+
+model Subscription {
+  id               String   @id @default(cuid())
+  userId           String   @unique @map("user_id")
+  stripeCustomerId String   @map("stripe_customer_id")
+  stripePriceId    String   @map("stripe_price_id")
+  status           String   // "active", "cancelled"
+  currentPeriodEnd DateTime @map("current_period_end")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("subscriptions")
+}
+
+model Certificate {
+  id       String   @id @default(cuid())
+  userId   String   @map("user_id")
+  levelId  String   @map("level_id")
+  issuedAt DateTime @default(now()) @map("issued_at")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  level Level @relation(fields: [levelId], references: [id])
+
+  @@index([userId])
+  @@map("certificates")
+}
+
+model Level {
+  id          String   @id @map("id") // l1-l5
+  name        String
+  description String
+  order       Int
+  isFree      Boolean  @default(false) @map("is_free")
+
+  lessons    Lesson[]
+  userLevels UserLevel[]
+  certificates Certificate[]
+
+  @@map("levels")
+}
+
+model Lesson {
+  id              String      @id @default(cuid())
+  levelId         String      @map("level_id")
+  title           String
+  type            String      // "video", "text", "lab"
+  videoUrl        String?     @map("video_url")
+  markdownContent String?     @map("markdown_content")
+  order           Int
+  duration        Int         // in minutes
+
+  level        Level          @relation(fields: [levelId], references: [id])
+  challenges   Challenge[]
+  userProgress UserProgress[]
+  quizAttempts QuizAttempt[]
+
+  @@index([levelId])
+  @@map("lessons")
+}
+
+model Challenge {
+  id          String   @id @default(cuid())
+  lessonId    String   @map("lesson_id")
+  instruction String
+  checkScript String   @map("check_script")
+  hints       Json     // Array of strings
+
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@index([lessonId])
+  @@map("challenges")
+}
