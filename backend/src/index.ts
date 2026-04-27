@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 import { createServer as createViteServer } from "vite";
 import dotenv from "dotenv";
 import fs from "fs";
-import { setupTerminalSocket } from "./terminal/terminalSocket";
+import { initTerminalSocket as setupTerminalSocket } from "./terminal/terminalSocket";
 import lessonsRouter from "./routes/lessons";
 import labsRouter from "./routes/labs";
 import dashboardRouter from "./routes/dashboard";
