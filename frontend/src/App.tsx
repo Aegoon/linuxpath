@@ -71,8 +71,8 @@ export default function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/dashboard" element={user ? <DashboardPage user={user} /> : <Navigate to="/auth" />} />
-            <Route path="/placement" element={user ? <PlacementTest user={user} /> : <Navigate to="/auth" />} />
-            <Route path="/course" element={user ? <CoursePage user={user} /> : <Navigate to="/auth" />} />
+            <Route path="/placement" element={<PlacementTest user={user} />} />
+            <Route path="/course/:levelId" element={user ? <CoursePage user={user} /> : <Navigate to="/auth" />} />
             <Route path="/pricing" element={<PricingPage />} />
             
             {/* Admin Routes */}

@@ -262,7 +262,8 @@ export function LandingPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex flex-col sm:flex-row items-center gap-6 p-6 rounded-2xl border border-gray-100 hover:bg-gray-50 transition-all cursor-default"
+                onClick={() => navigate(`/course/${level.id}`)}
+                className="flex flex-col sm:flex-row items-center gap-6 p-6 rounded-2xl border border-gray-100 hover:bg-gray-50 transition-all cursor-pointer"
               >
                 <div className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase border ${level.color}`}>
                   {level.badge}
