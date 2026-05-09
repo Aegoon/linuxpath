@@ -163,44 +163,7 @@ export function LandingPage() {
             </button>
           </motion.div>
 
-          {/* Terminal Mockup */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="relative mx-auto rounded-2xl overflow-hidden shadow-2xl border border-gray-800 bg-[#0A0A0A] p-1"
-          >
-            <div className="flex items-center gap-1.5 px-4 py-3 bg-[#1A1A1A]">
-              <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-              <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-              <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
-              <div className="ml-4 text-[10px] uppercase font-bold tracking-widest text-gray-500 font-mono">bash — student@linuxpath</div>
-            </div>
-            
-            <div className="p-8 text-left font-mono text-sm md:text-base leading-relaxed text-blue-50 font-medium">
-              <div className="flex gap-3 mb-2">
-                <span className="text-[#27C93F]">student@linuxpath:~$</span>
-                <span>ls -la /etc/nginx</span>
-              </div>
-              <div className="text-gray-400 mb-4 whitespace-pre">
-                total 12<br />
-                drwxr-xr-x 2 root root 4096 Apr 20 12:00 .<br />
-                drwxr-xr-x 3 root root 4096 Apr 20 11:50 ..<br />
-                -rw-r--r-- 1 root root  204 Apr 20 12:00 nginx.conf
-              </div>
-              <div className="flex gap-3 mb-2">
-                <span className="text-[#27C93F]">student@linuxpath:~$</span>
-                <span>grep "server_name" nginx.conf</span>
-              </div>
-              <div className="text-gray-400 mb-4">
-                server_name linuxpath.com;
-              </div>
-              <div className="flex gap-3">
-                <span className="text-[#27C93F]">student@linuxpath:~$</span>
-                <span className="w-2 h-5 bg-[#FF5F1F] animate-blink" />
-              </div>
-            </div>
-          </motion.div>
+          
         </div>
       </section>
 
